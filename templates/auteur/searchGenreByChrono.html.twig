@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bookland | Livres{% endblock %}
+{% block logo %}
+    <img src="../../img/logo-transparent.png" width="30" height="30" class="d-inline-block align-top" alt="logo">
+{% endblock %}
+
+{% block body %}
+
+    <table class="table">
+        <tr>
+            <td>
+                <p class="h4">Les auteurs et leurs genres par ordre chronologique</p>
+            </td>
+        </tr>
+    </table>
+
+    <table class="table table-striped">
+        <thead>
+            <tr style="text-align: left;">
+                <td><b>Nom / Prénom</b></td>
+                <td><b>Genre</b></td>
+                <td><b>Date de naissance</b></td>
+                <td><b>Nationalité</b></td>
+                <td></td>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for key1, value1 in list %}
+                {% for key2, value2 in list[key1] %}
+                    {% if key2 == "auteur" %}
+                        <tr>
+                            <td>{{ value2.nomPrenom }}</td>
+                            <td>{{ value2.sexe }}</td>
+                            <td>{{ value2.dateDeNaissance ? value2.dateDeNaissance|date('d-m-Y') : '' }}</td>
+                            <td>{{ value2.nationalite }}</td>
+                            <td style="text-align: right;">
+                                <a href="{{ path('auteur_show', {'id': value2.id}) }}"> <button type="button" class="btn btn-primary btn-sm">Voir</button></a>
+                                <a href="{{ path('auteur_edit', {'id': value2.id}) }}"> <button type="button" class="btn btn-secondary btn-sm">Modifier</button></a>
+                            </td>
+                        </tr>
+
+                    {% endif %}
+                    {% if key2 == "value" %}
+                        <tr style="text-align: left;">
+                            <td>
+                                {% for key3, value3 in list[key1][key2] %}
+                                    <ul class="list-group">
+                                        <li style="list-style: none;">
+                                            Pour le genre : <b>{{ key3 }}</b>  dernière mise à jour le : <b>{{ value3|date('d-M-Y') }}</b>
+                                        </li>
+                                    </ul>
+                                {% endfor %}
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

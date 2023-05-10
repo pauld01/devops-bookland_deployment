@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bookland | Voir genre{% endblock %}
+{% block logo %}
+    <img src="../../img/logo-transparent.png" width="30" height="30" class="d-inline-block align-top" alt="logo">
+{% endblock %}
+
+{% block body %}
+    <p class="h2">Les auteurs du genre {{ genre.nom }}</p>
+
+    <table class="table">
+        <tbody>
+        {% for auteur in auteurs %}
+            <tr>
+                <td> {{ auteur.nomPrenom }} </td>
+                <td style="text-align: right;"> <a href="{{ path('auteur_show', {'id': auteur.id}) }}"><button type="button" class="btn btn-primary btn-sm">Voir</button></a> </td>
+            </tr>
+        {% else %}
+            <tr> Aucun auteur n'a écris dans le genre {{ genre.nom }} pour le moment </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('genre_index') }}"><button type="button" class="btn btn-primary btn-lg btn-block">Voir les genres</button></a>
+
+{% endblock %}

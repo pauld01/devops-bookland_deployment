@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bookland | Livres{% endblock %}
+{% block logo %}
+    <img src="../../img/logo-transparent.png" width="30" height="30" class="d-inline-block align-top" alt="logo">
+{% endblock %}
+
+{% block body %}
+
+    <table class="table">
+        <tr>
+            <td>
+                <p class="h2">Les livres</p>
+            </td>
+            <td style="text-align: right;">
+                <a href="{{ path('livre_new') }}"> <button type="button" class="btn btn-primary btn-lg"><b>+</b> Ajouter un livre</button></a>
+            </td>
+        </tr>
+    </table>
+
+    <table class="table">
+        <thead>
+            <tr style="text-align: center;">
+                <th>ISBN</th>
+                <th>Titre</th>
+                <th>Nombre de pages</th>
+                <th>Date de parution</th>
+                <th>Note</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for livre in livres %}
+            <tr>
+                <td style="text-align: center;">{{ livre.isbn }}</td>
+                <td style="text-align: center;">{{ livre.titre }}</td>
+                <td style="text-align: center;">{{ livre.nbpages }}</td>
+                <td style="text-align: center;">{{ livre.dateDeParution ? livre.dateDeParution|date('d-M-Y') : '' }}</td>
+                <td style="text-align: center;">{{ livre.note }}</td>
+                <td style="text-align: right;">
+                    <a href="{{ path('livre_show', {'id': livre.id}) }}"> <button type="button" class="btn btn-primary btn-sm">Voir</button></a>
+                    <a href="{{ path('livre_edit', {'id': livre.id}) }}"> <button type="button" class="btn btn-secondary btn-sm">Modifier</button></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Pas de livres trouvés dans la base de données</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

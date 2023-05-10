@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bookland | Livres{% endblock %}
+{% block logo %}
+    <img src="../../img/logo-transparent.png" width="30" height="30" class="d-inline-block align-top" alt="logo">
+{% endblock %}
+
+{% block nav %}
+    {{ form_start(search_livre, { 'attr': {'class': 'form-inline'} }) }}
+    {{ form_widget(search_livre.titre, { 'attr': {'class': 'form-control mr-sm-2', 'placeholder': 'Rechercher rapide'} }) }}
+    {{ form_widget(search_livre.recherche, { 'attr': {'class': 'btn btn-outline-success my-2 my-sm-0'} }) }}
+    {{ form_end(search_livre) }}
+{% endblock %}
+{% block body %}
+    <table class="table">
+        <tr>
+            <td>
+                <p class="h4">Recherche de livre</p>
+            </td>
+        </tr>
+    </table>
+
+    <table class="table">
+        {{ form_start(search_form) }}
+        <tr>
+            <td colspan="2">
+                {{ form_widget(search_form.titre, { 'attr': {'class': 'form-control mr-sm-2', 'placeholder': 'Entrer un titre'} } ) }}
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col">
+                            {{ form_label(search_form.dateMin, 'La date de parution est comprise entre le :') }}
+                            {{ form_widget(search_form.dateMin, { 'attr': {'class': 'form-control'} } ) }}
+                        </div>
+                        <div class="col">
+                            {{ form_label(search_form.dateMax, 'et le :') }}
+                            {{ form_widget(search_form.dateMax, { 'attr': {'class': 'form-control'} } ) }}
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col">
+                            {{ form_label(search_form.noteMin, 'La note est comprise entre :') }}
+                            {{ form_widget(search_form.noteMin, { 'attr': {'class': 'form-control'} } ) }}
+                        </div>
+                        <div class="col">
+                            {{ form_label(search_form.noteMax, 'et :') }}
+                            {{ form_widget(search_form.noteMax, { 'attr': {'class': 'form-control'} } ) }}
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                {{ form_widget(search_form.recherche, { 'attr': {'class': 'btn btn-outline-success my-2 my-sm-0 btn-block'} }) }}
+            </td>
+        </tr>
+        {{ form(search_form) }}
+    </table>
+
+
+    <table class="table">
+        <thead>
+            <tr style="text-align: center;">
+                <th>ISBN</th>
+                <th>Titre</th>
+                <th>Nombre de pages</th>
+                <th>Date de parution</th>
+                <th>Note</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for l in livre %}
+                    <tr>
+                        <td style="text-align: center;">{{ l.isbn }}</td>
+                        <td style="text-align: center;">{{ l.titre }}</td>
+                        <td style="text-align: center;">{{ l.nbpages }}</td>
+                        <td style="text-align: center;">{{ l.dateDeParution ? l.dateDeParution|date('d-M-Y') : '' }}</td>
+                        <td style="text-align: center;">{{ l.note }}</td>
+                        <td style="text-align: right">
+                            <a href="{{ path('livre_show', {'id': l.id}) }}"> <button type="button" class="btn btn-primary btn-sm">Voir</button></a>
+                        </td>
+                    </tr>
+            {% else %}
+                    <tr>
+                        <td colspan="7">Aucun résultat ne correspond à votre recherche</td>
+                    </tr>
+            {% endfor %}
+        </tbody>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bookland | Accueil{% endblock %}
+{% block logo %}
+    <img src="../../img/logo-transparent.png" width="30" height="30" class="d-inline-block align-top" alt="logo">
+{% endblock %}
+
+{% block body %}
+    <table class="table">
+        <tr>
+            <td>
+                <p class="h2">Modifier {{ livre.titre }}</p>
+            </td>
+            <td style="text-align: right;">
+                {{ include('livre/_delete_form.html.twig') }}
+            </td>
+        </tr>
+    </table>
+
+    {{ include('livre/_form.html.twig', {'button_label': 'Valider'}) }}
+{% endblock %}

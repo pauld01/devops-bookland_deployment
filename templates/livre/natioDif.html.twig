@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bookland | Livres{% endblock %}
+{% block logo %}
+    <img src="../../img/logo-transparent.png" width="30" height="30" class="d-inline-block align-top" alt="logo">
+{% endblock %}
+
+{% block body %}
+
+    <table class="table">
+        <tr>
+            <td>
+                <p class="h4">Les livres qui ont des auteurs de nationalités différentes </p>
+            </td>
+        </tr>
+    </table>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Code ISBN</th>
+                <th>Titre</th>
+                <th>Nombre de pages</th>
+                <th>Date de parution</th>
+                <th>Note</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for l in list %}
+            <tr>
+                <td>{{ l.isbn }}</td>
+                <td>{{ l.titre }}</td>
+                <td>{{ l.nbpages }}</td>
+                <td>{{ l.dateDeParution ? l.dateDeParution|date('d-M-Y') : '' }}</td>
+                <td>{{ l.note }}</td>
+                <td style="text-align: right;">
+                    <a href="{{ path('livre_show', {'id': l.id}) }}"> <button type="button" class="btn btn-primary btn-sm">Voir</button></a>
+                    <a href="{{ path('livre_edit', {'id': l.id}) }}"> <button type="button" class="btn btn-secondary btn-sm">Modifier</button></a>
+                </td>
+            </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">Aucun livre ne possède d'auteur de nationalités différentes</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

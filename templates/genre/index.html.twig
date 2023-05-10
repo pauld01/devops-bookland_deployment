@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bookland | Genres{% endblock %}
+{% block logo %}
+    <img src="../../img/logo-transparent.png" width="30" height="30" class="d-inline-block align-top" alt="logo">
+{% endblock %}
+
+{% block body %}
+    <table class="table">
+        <tr>
+            <td>
+                <p class="h2">Les genres</p>
+            </td>
+            <td style="text-align: right;">
+                <a href="{{ path('genre_new') }}"> <button type="button" class="btn btn-primary btn-lg"><b>+</b> Ajouter un genre</button></a>
+            </td>
+        </tr>
+    </table>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for genre in genres %}
+            <tr>
+                <td>{{ genre.nom }}</td>
+                <td style="text-align: right;">
+                    <a href="{{ path('genre_show', {'id': genre.id}) }}"> <button type="button" class="btn btn-primary btn-sm">Voir</button></a>
+                    <a href="{{ path('genre_edit', {'id': genre.id}) }}"> <button type="button" class="btn btn-secondary btn-sm">Modifier</button></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Pas de genre trouvés dans la base de données</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="d-grid gap-2 col-4 mx-auto">
+        <a href="{{ path('genre_voidGenre') }}"><button class="btn btn-danger" type="button">Supprimer les genres qui n'ont pas de livres</button>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+index:
+  path: /
+  controller: App\Controller\DefaultController::index
+
+
+livre_R :
+    resource: routes/livre/routes.yaml
+    prefix:   /livre
+
+auteur_R :
+    resource: routes/auteur/routes.yaml
+    prefix:   /auteur
+
+genre_R :
+    resource: routes/genre/routes.yaml
+    prefix:   /genre

@@ -1,0 +1,27 @@
+auteur_writeSupN:
+    path:  /writeSupN
+    controller: App\Controller\AuteurController::writeSupN
+
+auteur_writeGender:
+    path:  /writeGender
+    controller: App\Controller\AuteurController::writeGender
+
+auteur_increaseAll:
+    path:  /increaseAll/{auteur}/{value}
+    controller: App\Controller\AuteurController::increaseAll
+    requirements: 
+        auteur:  \d+
+        value:  \d+
+
+auteur_searchGenreByChrono:
+    path:  /searchGenreByChrono
+    controller: App\Controller\AuteurController::searchGenreByChrono
+
+auteur_increaseAllView:
+    path:  /increaseAllView
+    controller: App\Controller\AuteurController::increaseAllView
+
+auteur_new:
+    path:  /new
+    controller: App\Controller\AuteurController::new
+    methods: GET|POST

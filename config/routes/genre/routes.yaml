@@ -1,0 +1,13 @@
+genre_medPageGenre:
+    path:  /medPageGenre/{genre}
+    controller: App\Controller\GenreController::medPageGenre
+
+genre_showAuteur:
+    path:  /showAuteur/{id}
+    controller: App\Controller\GenreController::showAuteur
+    requirements: 
+        id:  \d+
+
+genre_voidGenre:
+    path:  /voidGenre
+    controller: App\Controller\GenreController::voidGenre

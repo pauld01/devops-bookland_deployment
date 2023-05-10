@@ -1,0 +1,16 @@
+{{ form_start(Updateform) }}
+    <table class="tabl">
+        <tr>
+            <td>
+                {{ form_label(Updateform.val, 'Augmenter tous les livres de cet auteur de :') }}
+            </td><td>
+                {{ form_widget(Updateform.val) }}
+            </td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td>
+                {{ form_widget(Updateform.Augmenter,{ 'attr': {'class': 'btn btn-warning my-2 my-sm-0 btn-block'} }) }}
+            </td>
+        </tr>
+
+    </table>
+{{ form_end(Updateform) }}

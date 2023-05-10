@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bookland | Livres{% endblock %}
+{% block logo %}
+    <img src="../../img/logo-transparent.png" width="30" height="30" class="d-inline-block align-top" alt="logo">
+{% endblock %}
+
+{% block body %}
+
+    <table class="table">
+        <tr>
+            <td>
+                <p class="h3">Les livres qui respecte la parité </p>
+            </td>
+        </tr>
+    </table>
+
+    <div class="table-responsive">
+        <table class="table align-middle table-hover">
+            <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Nombre d'écrivains</th>
+                <th>Nombre d'hommes</th>
+                <th>Nombre de femmes</th>
+                <th>Pourcentage d'hommes</th>
+                <th>Pourcentage de femmes</th>
+                <th></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for l in list %}
+                <tr>
+                    <td>{{ l.livre }}</td>
+                    <td>{{ l.total }}</td>
+                    <td>{{ l.NBH }}</td>
+                    <td>{{ l.NBF }}</td>
+                    <td>{{ l.pourcentageH }}%</td>
+                    <td>{{ l.pourcentageF }}%</td>
+                    <td style="text-align: right">
+                        <a href="{{ path('livre_show', {'id': l.livre.id}) }}"> <button type="button" class="btn btn-primary btn-sm">Voir</button></a>
+                    </td>
+
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">Aucun livre ne respecte la parité</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+{% endblock %}

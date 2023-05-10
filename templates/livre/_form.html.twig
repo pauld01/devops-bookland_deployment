@@ -1,0 +1,43 @@
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{{ form_start(form) }}
+
+    <table class="table table-hover">
+        <tbody>
+            <tr>
+                <th>{{ form_label(form.isbn) }}</th>
+                <td>{{ form_widget(form.isbn) }}</td>
+            </tr>
+            <tr>
+                <th>{{ form_label(form.titre) }}</th>
+                <td>{{ form_widget(form.titre) }}</td>
+            </tr>
+            <tr>
+                <th>{{ form_label(form.nbpages, 'Nombre de pages') }}</th>
+                <td>{{ form_widget(form.nbpages) }}</td>
+            </tr>
+            <tr>
+                <th>{{ form_label(form.date_de_parution) }}</th>
+                <td>{{ form_widget(form.date_de_parution) }}</td>
+            </tr>
+            <tr>
+                <th>{{ form_label(form.note, 'Note (sur 20)') }}</th>
+                <td>{{ form_widget(form.note) }}</td>
+            </tr>
+            <tr>
+                <th>{{ form_label(form.genre) }}</th>
+                <td>{{ form_widget(form.genre) }}</td>
+            </tr>
+
+            <tr>
+                <th>{{ form_label(form.auteur) }}</th>
+                <td>{{ form_widget(form.auteur) }}</td>
+            </tr>
+            <tr>
+                <td colspan = 2 style="text-align: left;">
+                    <button class="btn btn-outline-success btn-sm">{{ button_label|default('Valider') }}</button>
+                    <a href="{{ path('livre_index') }}"><button type="button" class="btn btn-outline-danger btn-sm">Annuler</button></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+{{ form_end(form) }}

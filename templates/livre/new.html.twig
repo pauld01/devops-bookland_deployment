@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bookland | Ajouter livre{% endblock %}
+{% block logo %}
+    <img src="../../img/logo-transparent.png" width="30" height="30" class="d-inline-block align-top" alt="logo">
+{% endblock %}
+
+{% block body %}
+    <p class="h2">Ajouter un Livre</p>
+
+    {{ include('livre/_form.html.twig') }}
+{% endblock %}

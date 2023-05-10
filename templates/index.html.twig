@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bookland | Accueil{% endblock %}
+{% block logo %}
+    <img src="img/logo-transparent.png" width="30" height="30" class="d-inline-block align-top" alt="logo">
+{% endblock %}
+
+{% block body %}
+    <br>
+    <h2 style="text-align: center;">Bienvenue sur Bookland !</h2>
+    <h5 style="text-align: center;"><i>Vous avez visité notre site : {{ nbreFois }} fois, merci à vous !</i><h5>
+
+    <div class="container" ,style=" text-align: center;">
+      <div class="row">
+        <div class="col">
+    <br></br>
+          <h3> Les livres préférés : </h3>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Note</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for livre in livres5 %}
+                <tr>
+                    <td><h5>{{ livre.titre }}</h5></td>
+                    <td><h5>{{ livre.note }}</h5></td>
+                    <td style="text-align: right;">
+                        <a href="{{ path('livre_show', {'id': livre.id}) }}"> <button type="button" class="btn btn-primary btn-sm">Voir</button></a>
+                    </td>
+                    <td style="text-align: right;">
+                        <a href="{{ path('livre_edit', {'id': livre.id}) }}"> <button type="button" class="btn btn-secondary btn-sm">Modifier</button></a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">Pas de livres trouvés dans la base de données</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        </div>
+        <div class="col">
+    <br></br>
+          <h3> Les derniers ajouts : </h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Note</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        {% for livre in livresLast %}
+                <tr>
+                    <td><h5>{{ livre.titre }}</h5></td>
+                    <td><h5>{{ livre.note }}</h5></td>
+                    <td style="text-align: right;">
+                        <a href="{{ path('livre_show', {'id': livre.id}) }}"> <button type="button" class="btn btn-primary btn-sm">Voir</button></a>
+            </td>
+            <td style="text-align: right;">
+                        <a href="{{ path('livre_edit', {'id': livre.id}) }}"> <button type="button" class="btn btn-secondary btn-sm">Modifier</button></a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">Pas de livres trouvés dans la base de données</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

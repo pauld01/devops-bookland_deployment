@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bookland | Voir livre{% endblock %}
+{% block logo %}
+    <img src="../../img/logo-transparent.png" width="30" height="30" class="d-inline-block align-top" alt="logo">
+{% endblock %}
+
+{% block body %}
+    <table class="table">
+        <tr>
+            <td>
+                <p class="h2">{{ livre.titre }}</p>
+            </td>
+            <td style="text-align: right;">
+                {{ include('livre/_delete_form.html.twig') }}
+            </td>
+        </tr>
+    </table>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>ISBN</th>
+                <td>{{ livre.isbn }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ livre.titre }}</td>
+            </tr>
+            <tr>
+                <th>Nombre de pages</th>
+                <td>{{ livre.nbpages }}</td>
+            </tr>
+            <tr>
+                <th>Date de parution</th>
+                <td>{{ livre.dateDeParution ? livre.dateDeParution|date('d-M-Y') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ livre.note }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table>
+        <tr>
+            <td>
+                <a href="{{ path('livre_index') }}"><button type="button" class="btn btn-primary btn-sm">Retour à la liste</button></a>
+            </td>
+            <td>
+                <a href="{{ path('livre_edit', {'id': livre.id}) }}"><button type="button" class="btn btn-secondary btn-sm">Modifier</button></a>
+            </td>
+            <td>
+                <a href="{{ path('livre_upBook', {'id': livre.id}) }}"><button type="button" class="btn btn-success btn-sm">Augmenter la note du livre</button></a>
+            </td>
+            <td>
+                <a href="{{ path('livre_downBook', {'id': livre.id}) }}"><button type="button" class="btn btn-warning btn-sm">Diminuer la note du livre</button></a>
+            </td>
+        </tr>
+    </table>
+
+    <br></br>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <h3>Genres :</h3>
+
+                <table class="table">
+                    {% for genre in genres %}
+                        <tr>
+                            <td> {{ genre.nom}}</td>
+                            <td style="text-align: right;">
+                                <a href="{{ path('genre_show', {'id': genre.id}) }}"> <button type="button" class="btn btn-primary btn-sm">Voir</button></a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="6">Aucun genres ne correspond à ce livre</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="col">
+                <p class="h3">Auteurs :</p>
+
+                <table class="table">
+                    {% for auteur in auteurs %}
+                        <tr>
+                            <td> {{ auteur.nomPrenom}}</td>
+                            <td style="text-align: right;">
+                                <a href="{{ path('auteur_show', {'id': auteur.id}) }}"> <button type="button" class="btn btn-primary btn-sm">Voir</button></a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="6">Aucun auteur n'a écrit dans ce livre</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

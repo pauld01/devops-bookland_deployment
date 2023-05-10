@@ -1,0 +1,18 @@
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{{ form_start(form) }}
+
+    <table class="table table-hover">
+        <tbody>
+            <tr>
+                <th>{{ form_label(form.nom) }}</th>
+                <td>{{ form_widget(form.nom) }}</td>
+            </tr>
+            <tr>
+                <td colspan = 2 style="text-align: left;">
+                <button class="btn btn-outline-success btn-sm">{{ button_label|default('Valider') }}</button>
+                <a href="{{ path('genre_index') }}"><button type="button" class="btn btn-outline-danger btn-sm">Annuler</button></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+{{ form_end(form) }}

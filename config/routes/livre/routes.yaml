@@ -1,0 +1,32 @@
+livre_between:
+    path:     /between/{datemin}/{datemax}
+    controller: App\Controller\LivreController::between
+
+livre_between2: 
+    path:     /between2/{datemin}/{datemax}/{note1}/{note2}
+    controller: App\Controller\LivreController::between2
+
+livre_natioDif: 
+    path:     /natioDif
+    controller: App\Controller\LivreController::natioDif
+
+livre_parite:
+    path:     /parite
+    controller: App\Controller\LivreController::parite
+
+livre_searchName:
+    path:     /searchName/{string}
+    controller: App\Controller\LivreController::searchName
+
+livre_upBook:
+    path:     /upBook/{id}
+    controller: App\Controller\LivreController::upBook
+    requirements: 
+        idLivre:  \d+
+
+livre_downBook:
+    path:     /downBook/{id}
+    controller: App\Controller\LivreController::downBook
+    requirements: 
+        idLivre:  \d+
+    
