@@ -36,7 +36,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-php-
     - name: Install Composer
-      uses: php-actions/composer@v6
+      uses: php-actions/composer@master
     - name: Update Composer
       run: composer update
     - name: Symfony check
