@@ -25,6 +25,7 @@ jobs:
       with:
         php-version: '7.1'
     - uses: actions/checkout@v3
+    - uses: php-actions/phpunit@v3
 
     - name: Copy .env.test.local
       run: php -r "file_exists('.env.test.local') || copy('.env.test', '.env.test.local');"
@@ -38,10 +39,12 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-php-
 
-    - name: Execute tests (Unit and Feature tests) via PHPUnit
-      env:
-        DATABASE_URL: "{{ DATABASE_URL }}"
-      run: vendor/bin/phpunit
+    # - name: Execute tests (Unit and Feature tests) via PHPUnit
+    #   env:
+    #     DATABASE_URL: "{{ DATABASE_URL }}"
+    #   run: vendor/bin/phpunit
+    - name: PHPUnit tests
+      uses: php-actions/phpunit@v3
 
     - name: Create Database
       run: |
