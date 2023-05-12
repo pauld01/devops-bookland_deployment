@@ -41,7 +41,3 @@ jobs:
 
     - name: PHPUnit tests
       uses: php-actions/phpunit@v3
-
-    - name: Create Database
-      run: |
-        mysql -h "{{ URL }}" -u "{{ USER }}" -p"{{ PASSWORD }}" -e "CREATE DATABASE devops_efrei;"
