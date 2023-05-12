@@ -24,37 +24,23 @@ jobs:
     # - uses: shivammathur/setup-php@2cb9b829437ee246e9b3cac53555a39208ca6d28
       with:
         php-version: '8.0'
-        tools: composer:v2
     - uses: actions/checkout@v3
-    # - name: Copy .env.test.local
-    #   run: php -r "file_exists('.env.test.local') || copy('.env.test', '.env.test.local');"
-    # - name: Cache Composer packages
-    #   id: composer-cache
-    #   uses: actions/cache@v3
-    #   with:
-    #     path: vendor
-    #     key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-    #     restore-keys: |
-    #       ${{ runner.os }}-php-
-    # - name: Install Composer
-    #   run:
-    #     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-    #     php -r "if (hash_file('sha384', 'composer-setup.php') === '55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-    #     php composer-setup.php
-    #     php -r "unlink('composer-setup.php');"
-    - name: Install Composer dependencies
-      run: composer install
-    - name: Get composer cache directory
+    - name: Copy .env.test.local
+      run: php -r "file_exists('.env.test.local') || copy('.env.test', '.env.test.local');"
+    - name: Cache Composer packages
       id: composer-cache
-      run: echo "::set-output name=dir::$(composer config cache-files-dir)"
-    - name: Cache composer dependencies
-      uses: actions/cache@v1
+      uses: actions/cache@v3
       with:
-        path: ${{ steps.composer-cache.outputs.dir }}
-        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-        restore-keys: ${{ runner.os }}-composer-
-    - name: Install Composer dependencies
-      run: composer install
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
+    - name: Install Composer
+      run:
+        php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+        php -r "if (hash_file('sha384', 'composer-setup.php') === '55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+        php composer-setup.php
+        php -r "unlink('composer-setup.php');"
     - name: Disable Symfony debug toolbar
       run: |
         echo "debug:\n  enabled: false" >> config/packages/dev/debug.yaml
