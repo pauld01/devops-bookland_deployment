@@ -38,11 +38,11 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-php-
 
-    - name: Create Database
-      run: |
-        echo "CREATE DATABASE devops_efrei;" | mysql -u "{{ USER }}" -p "{{ PASSWORD }}"
-
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
         DATABASE_URL: "{{ DATABASE_URL }}"
       run: vendor/bin/phpunit
+
+    - name: Create Database
+      run: |
+        echo "CREATE DATABASE devops_efrei;" | mysql -u "{{ USER }}" -p "{{ PASSWORD }}"
