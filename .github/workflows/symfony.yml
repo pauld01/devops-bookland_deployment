@@ -37,6 +37,8 @@ jobs:
           ${{ runner.os }}-php-
     - name: Install Composer
       uses: php-actions/composer@v6
+      with:
+        php_version: 7.1
     - name: Update Composer
       run: composer update
     - name: Symfony check
