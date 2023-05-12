@@ -37,6 +37,8 @@ jobs:
           ${{ runner.os }}-php-
     - name: Install Composer
       uses: php-actions/composer@v6
+    - name: Update Composer
+      run: composer update
     - name: Symfony check
       run: symfony check:requirements
     - name: Clear cache Composer
