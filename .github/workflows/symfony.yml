@@ -23,7 +23,7 @@ jobs:
     - uses: shivammathur/setup-php@v2
     # - uses: shivammathur/setup-php@2cb9b829437ee246e9b3cac53555a39208ca6d28
       with:
-        php-version: '7.1'
+        php-version: '8.0'
     - uses: actions/checkout@v3
     - name: Copy .env.test.local
       run: php -r "file_exists('.env.test.local') || copy('.env.test', '.env.test.local');"
@@ -40,7 +40,7 @@ jobs:
     - name: Install dependencies
       uses: php-actions/composer@v6
       with:
-        php_version: '7.1'
+        php_version: '8.0'
     - name: Disable Symfony debug toolbar
       run: |
         echo "debug:\n  enabled: false" >> config/packages/dev/debug.yaml
