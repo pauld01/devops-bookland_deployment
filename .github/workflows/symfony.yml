@@ -42,8 +42,8 @@ jobs:
       with:
         php_version: '8.0'
     - name: Disable Symfony debug toolbar
-      run: |
-        echo "debug:\n  enabled: false" >> config/packages/dev/debug.yaml
+      run: composer remove symfony/debug
+        # echo "debug:\n  enabled: false" >> config/packages/dev/debug.yaml
     # - name: Symfony check
     #   run: symfony check:requirements
     - name: Clear cache Composer
