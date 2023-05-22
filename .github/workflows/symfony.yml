@@ -40,4 +40,6 @@ jobs:
           ${{ runner.os }}-php-
 
     - name: PHPUnit tests
-      uses: php-actions/phpunit@v3 --migrate-configuration
+      uses: php-actions/phpunit@v3 
+      with:
+        path: --migrate-configuration
