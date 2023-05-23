@@ -23,6 +23,9 @@ jobs:
         php-version: '8'
     - name: Cache vendor folder
       uses: actions/cache@v3
+      with:
+        path: /vendor
+        key: ${{ github.sha }}
 
     - name: Build vendor folder
       run: composer install
@@ -32,8 +35,6 @@ jobs:
     steps:
       - name: PHPUnit tests
         uses: php-actions/phpunit@v3 
-        with:
-          path: --migrate-configuration
 
   changing-app-env:
     runs-on: ubuntu-latest
