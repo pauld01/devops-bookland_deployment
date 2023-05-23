@@ -29,7 +29,7 @@ jobs:
 
     - name: Build vendor folder
       run: composer install
-      working-directory: ../.
+      working-directory: /home/runner/work/devops-bookland_deployment/
 
   unitary-tests:
     runs-on: ubuntu-latest
