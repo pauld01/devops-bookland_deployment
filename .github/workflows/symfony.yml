@@ -15,7 +15,7 @@ permissions:
   contents: read
 
 jobs:
-  symfony-tests:
+  symfony-init-tests:
     runs-on: ubuntu-latest
     steps:
     #  To automatically get bug fixes and new Php versions for shivammathur/setup-php,
@@ -24,22 +24,33 @@ jobs:
     - uses: shivammathur/setup-php@2cb9b829437ee246e9b3cac53555a39208ca6d28
       with:
         php-version: '7.1'
-    - uses: actions/checkout@v3
-    - uses: php-actions/phpunit@v3
-
-    - name: Copy .env.test.local
-      run: php -r "file_exists('.env.test.local') || copy('.env.test', '.env.test.local');"
-
-    - name: Cache Composer packages
-      id: composer-cache
+    - name: Cache vendor folder
       uses: actions/cache@v3
       with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
+        path: /vendor
+        key: ${{ github.sha }}
 
-    - name: PHPUnit tests
-      uses: php-actions/phpunit@v3 
-      with:
-        path: --migrate-configuration
+    - name: Build vendor folder
+      run: composer install
+    # - uses: actions/checkout@v3
+  unitary-tests:
+    runs-on: ubuntu-latest
+    steps:
+      # - uses: php-actions/phpunit@v3
+
+      - name: Copy .env.test.local
+        run: php -r "file_exists('.env.test.local') || copy('.env.test', '.env.test.local');"
+
+      # - name: Cache Composer packages
+      #   id: composer-cache
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: vendor
+      #     key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-php-
+
+      - name: PHPUnit tests
+        uses: php-actions/phpunit@v3 
+        with:
+          path: --migrate-configuration
