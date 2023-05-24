@@ -58,3 +58,6 @@ jobs:
           DATABASE_PORT: ${{ secrets.PORT }}
           DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
           DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+          
+      - name: Display env
+        run: cat .env
