@@ -42,9 +42,13 @@ jobs:
 
       - name: PHPUnit tests
         uses: php-actions/phpunit@v3 
+        
+      - name: MySQL test
+        run: mysql -h $HOST -P $PORT -u $USERNAME -p $PASSWORD -e "SELECT 1 + 1 AS solution"
 
   changing-app-env:
     runs-on: ubuntu-latest
     steps:
       - name: Copy .env.test.local
         run: php -r "file_exists('.env.test.local') || copy('.env.test', '.env.test.local');"
+    
