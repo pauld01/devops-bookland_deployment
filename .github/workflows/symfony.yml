@@ -45,9 +45,7 @@ jobs:
 
   changing-app-env:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./devops-bookland_deployment
+    
     steps:
       - name: Copy .env.test.local
         run: php -r "file_exists('.env.test.local') || copy('.env.test', '.env.test.local');"
