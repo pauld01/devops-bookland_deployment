@@ -60,4 +60,4 @@ jobs:
           DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
           
       - name: Display env
-        run: cat ../../.env
+        run: cat ../.env
