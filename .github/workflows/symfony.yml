@@ -52,7 +52,7 @@ jobs:
 
       - name: MySQL test
         run: |
-          echo "Host: ${{ env.DATABASE_HOST }}"
+          echo mysql -h ${{ env.DATABASE_HOST }} -P ${{ env.DATABASE_PORT }}-u ${{ env.DATABASE_USERNAME }} -p"${{ env.DATABASE_PASSWORD }}" -e "SELECT 1 + 1 AS solution"
         env:
           DATABASE_HOST: db-mysql-lon1-92536-do-user-14140355-0.b.db.ondigitalocean.com
           DATABASE_PORT: 25060
