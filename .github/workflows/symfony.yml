@@ -49,9 +49,6 @@ jobs:
     steps:
       - name: Copy .env.test.local
         run: php -r "file_exists('.env.test.local') || copy('.env.test', '.env.test.local');"
-      
-      - name: Build vendor folder
-        run: composer install
 
       - name: MySQL test
         run: |
