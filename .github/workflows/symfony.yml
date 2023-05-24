@@ -55,7 +55,7 @@ jobs:
 
       - name: MySQL test
         run: |
-          echo $DATABASE_NAME $DATABASE_PORT 
+          echo "Host: ${{ env.DATABASE_HOST }}"
         env:
           DATABASE_HOST: ${{ secrets.DATABASE_URL }}
           DATABASE_PORT: ${{ secrets.PORT }}
