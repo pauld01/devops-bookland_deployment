@@ -56,5 +56,5 @@ jobs:
           DATABASE_HOST: db-mysql-lon1-92536-do-user-14140355-0.b.db.ondigitalocean.com
           DATABASE_PORT: 25060
           DATABASE_NAME: doadmin
-          DATABASE_PASSWORD: AVNS_BbwjmXsjkS2rcDKqkkc
+          DATABASE_PASSWORD: "AVNS_BbwjmXsjkS2rcDKqkkc"
         
