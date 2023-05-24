@@ -51,7 +51,7 @@ jobs:
       
       - name: Build vendor folder
         run: composer install
-        working-directory: /home/runner/work/devops-bookland_deployment/
+#         working-directory: /home/runner/work/devops-bookland_deployment/
 
       - name: MySQL test
         run: |
