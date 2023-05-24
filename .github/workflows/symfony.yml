@@ -48,12 +48,16 @@ jobs:
     steps:
       - name: Copy .env.test.local
         run: php -r "file_exists('.env.test.local') || copy('.env.test', '.env.test.local');"
-        
+      
+      - name: Build vendor folder
+        run: composer install
+        working-directory: /home/runner/work/devops-bookland_deployment/
+
       - name: MySQL test
-        run: | 
+        run: |
           echo $DATABASE_NAME $DATABASE_PORT 
         env:
-          DATABASE_HOST: ${{ env.DATABASE_URL }}
-          DATABASE_PORT: ${{ env.PORT }}
+          DATABASE_HOST: ${{ secrets.DATABASE_URL }}
+          DATABASE_PORT: ${{ secrets.PORT }}
           DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
-          DATABASE_PASSWORD: ${{ vars.DATABASE_PASSWORD }}
+          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
