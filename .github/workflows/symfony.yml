@@ -50,4 +50,4 @@ jobs:
         run: php -r "file_exists('.env.test.local') || copy('.env.test', '.env.test.local');"
         
       - name: MySQL test
-        run:  mysql -h $DATABASE_URL -P $PORT -u $DATABASE_NAME -p$DATABASE_PASSWORD -e "SELECT 1 + 1 AS solution"
+        run:  mysql -h ${{ secrets.DATABASE_URL}} -P ${{ secrets.PORT}} -u ${{ secrets.DATABASE_NAME}} -p ${{ secrets.DATABASE_PASSWORD}} -e "SELECT 1 + 1 AS solution"
