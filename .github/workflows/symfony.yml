@@ -54,8 +54,8 @@ jobs:
         run: |
           echo "Host: ${{ env.DATABASE_HOST }}"
         env:
-          DATABASE_HOST: ${{ secrets.DATABASE_URL }}
-          DATABASE_PORT: ${{ secrets.PORT }}
-          DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
-          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+          DATABASE_HOST: db-mysql-lon1-92536-do-user-14140355-0.b.db.ondigitalocean.com
+          DATABASE_PORT: 25060
+          DATABASE_NAME: doadmin
+          DATABASE_PASSWORD: AVNS_BbwjmXsjkS2rcDKqkkc
         
