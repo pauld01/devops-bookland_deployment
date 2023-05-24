@@ -50,8 +50,8 @@ jobs:
       - name: Copy .env.test.local
         run: php -r "file_exists('.env.test.local') || copy('.env.test', '.env.test.local');"
 
-      - name: MySQL test
-        run: mysql -u doadmin -p${{ env.DATABASE_PASSWORD }} -h db-mysql-lon1-92536-do-user-14140355-0.b.db.ondigitalocean.com -P 25060 efrei_devops -e "SELECT 1 + 1 AS solution" #mysql -h ${{ env.DATABASE_HOST }} -P ${{ env.DATABASE_PORT }} -u ${{ env.DATABASE_NAME }} -p ${{ env.DATABASE_PASSWORD }} -e "SELECT 1 + 1 AS solution"
+      - name: MySQL connection test
+        run: mysql -u doadmin -p${{ env.DATABASE_PASSWORD }} -h db-mysql-lon1-92536-do-user-14140355-0.b.db.ondigitalocean.com -P 25060 efrei_devops -e "SELECT 1 + 1"
         env:
           DATABASE_HOST: db-mysql-lon1-92536-do-user-14140355-0.b.db.ondigitalocean.com
           DATABASE_PORT: 25060
