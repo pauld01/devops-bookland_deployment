@@ -51,7 +51,7 @@ jobs:
         run: php -r "file_exists('.env.test.local') || copy('.env.test', '.env.test.local');"
 
       - name: MySQL connection test
-        run: mysql -u ${{ DATABASE_NAME }} -p${{ env.DATABASE_PASSWORD }} -h ${{ db-mysql-lon1-92536-do-user-14140355-0.b.db.ondigitalocean.com }} -P ${{ DATABASE_PORT }} efrei_devops -e "SELECT 1 + 1"
+        run: mysql -u ${{ env.DATABASE_NAME }} -p${{ env.DATABASE_PASSWORD }} -h ${{ env.DATABASE_HOST }} -P ${{ env.DATABASE_PORT }} efrei_devops -e "SELECT 1 + 1"
         env:
           DATABASE_HOST: db-mysql-lon1-92536-do-user-14140355-0.b.db.ondigitalocean.com
           DATABASE_PORT: 25060
