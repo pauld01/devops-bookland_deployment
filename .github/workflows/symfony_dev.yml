@@ -1,0 +1,58 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Symfony
+
+on:
+  push:
+    branches: [ "dev" ]
+  pull_request:
+    branches: [ "dev" ]
+
+permissions:
+  contents: read
+
+jobs:
+  symfony-init-tests:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8'
+    - name: Cache vendor folder
+      uses: actions/cache@v3
+      with:
+        path: /vendor
+        key: ${{ github.sha }}
+
+    - name: Check symfony requirements
+      run: symfony check:requirements
+
+    - name: Build vendor folder
+      run: composer install
+      # working-directory: /home/runner/work/devops-bookland_deployment/
+
+  unitary-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Retrieve cached vendor folder
+        uses: actions/cache@v3
+        with:
+          path: /vendor
+          key: ${{ github.sha }}
+
+      - name: PHPUnit tests
+        uses: php-actions/phpunit@v3
+
+  changing-app-env:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Copy .env.test.local
+        run: php -r "file_exists('.env.test.local') || copy('.env.test', '.env.test.local');"
+
+      - name: MySQL connection test
+        run: mysql -u ${{ vars.DATABASE_USER }} -p${{ vars.DATABASE_PASSWORD }} -h ${{ vars.DATABASE_HOST }} -P ${{ vars.DATABASE_PORT }} ${{ vars.DATABASE_NAME }} -e "SELECT 1 + 1"
+        
