@@ -38,9 +38,10 @@ jobs:
     - name: Composer update
       run: composer update    
     - name: Install dependencies
-      uses: php-actions/composer@v6
-      with:
-        php_version: '8.0'
+      run: composer install
+      # uses: php-actions/composer@v6
+      # with:
+      #   php_version: '8.0'
     - name: Check Symfony requirements
       run: vendor/bin/requirements-checker
     - name: Disable Symfony debug toolbar
