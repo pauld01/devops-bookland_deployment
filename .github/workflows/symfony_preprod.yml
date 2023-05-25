@@ -41,11 +41,11 @@ jobs:
       uses: php-actions/composer@v6
       with:
         php_version: '8.0'
+    - name: Symfony check
+      run: symfony check:requirements
     - name: Disable Symfony debug toolbar
       run: composer remove --dev symfony/debug
         # echo "debug:\n  enabled: false" >> config/packages/dev/debug.yaml
-    # - name: Symfony check
-    #   run: symfony check:requirements
     - name: Clear cache Composer
       run: composer clear-cache
 #     - name: Create Database
