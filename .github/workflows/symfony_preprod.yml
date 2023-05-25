@@ -41,8 +41,8 @@ jobs:
       uses: php-actions/composer@v6
       with:
         php_version: '8.0'
-    - name: Symfony check
-      run: symfony check:requirements
+    - name: Check Symfony requirements
+      run: vendor/bin/requirements-checker
     - name: Disable Symfony debug toolbar
       run: composer remove --dev symfony/debug
         # echo "debug:\n  enabled: false" >> config/packages/dev/debug.yaml
