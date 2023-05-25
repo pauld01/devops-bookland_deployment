@@ -55,9 +55,4 @@ jobs:
 
       - name: MySQL connection test
         run: mysql -u ${{ vars.DATABASE_USER }} -p${{ vars.DATABASE_PASSWORD }} -h ${{ vars.DATABASE_HOST }} -P ${{ vars.DATABASE_PORT }} ${{ vars.DATABASE_NAME }} -e "SELECT 1 + 1"
-#         env:
-#           DATABASE_HOST: db-mysql-lon1-92536-do-user-14140355-0.b.db.ondigitalocean.com
-#           DATABASE_PORT: 25060
-#           DATABASE_NAME: ${{ vars.DATABASE_NAME }}
-#           DATABASE_PASSWORD: "AVNS_BbwjmXsjkS2rcDKqkkc"
         
