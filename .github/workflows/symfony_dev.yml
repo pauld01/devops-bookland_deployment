@@ -28,7 +28,7 @@ jobs:
         key: ${{ github.sha }}
 
     - name: Check symfony requirements
-      run: composer check:requirements
+      run: symfony check:requirements
 
     - name: Build vendor folder
       run: composer install
