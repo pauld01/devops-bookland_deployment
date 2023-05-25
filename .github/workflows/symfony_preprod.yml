@@ -29,6 +29,8 @@ jobs:
 
     # - name: Composer update
     #   run: composer update    
+    - name: Validate composer.json and composer.lock
+      run: composer validate
     - name: Install dependencies
       run: composer install
       # uses: php-actions/composer@v6
