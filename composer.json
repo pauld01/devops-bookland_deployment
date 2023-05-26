@@ -2,7 +2,6 @@
     "type": "project",
     "license": "proprietary",
     "require": {
-        
         "php": "^8.0.0",
         "ext-ctype": "*",
         "ext-iconv": "*",
@@ -21,7 +20,8 @@
         "symfony/twig-bundle": "4.4.*",
         "symfony/validator": "4.4.*",
         "symfony/yaml": "4.4.*",
-        "twbs/bootstrap": "^5.1"
+        "twbs/bootstrap": "^5.1",
+        "symfony/maker-bundle": "^1.36"
     },
     "config": {
         "preferred-install": {
