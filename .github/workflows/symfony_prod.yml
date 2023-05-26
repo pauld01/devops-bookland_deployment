@@ -41,6 +41,7 @@ jobs:
       uses: php-actions/composer@v6
       with:
         php_version: "7.4"
+        version: "2.x"
     - name: Disable Symfony debug toolbar
       run: composer remove symfony/debug
         # echo "debug:\n  enabled: false" >> config/packages/dev/debug.yaml
