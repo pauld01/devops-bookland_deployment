@@ -47,8 +47,8 @@ jobs:
         # echo "debug:\n  enabled: false" >> config/packages/dev/debug.yaml
     # - name: Symfony check
     #   run: symfony check:requirements
-    - name: Clear cache Composer
-      run: composer clear-cache
+#     - name: Clear cache Composer
+#       run: composer clear-cache
 #     - name: Create Database
 #       run: |
 #         mkdir -p data
