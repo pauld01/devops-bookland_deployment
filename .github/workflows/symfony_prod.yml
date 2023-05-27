@@ -41,10 +41,11 @@ jobs:
       run: composer update --lock
 
     - name: Composer update dependencies
-      run: composer update
+      run: composer update --ignore-platform-reqs
       
     - name: Composer install dependencies
       run: composer install 
+
 #     - name: Install dependencies
 #       uses: php-actions/composer@v6
 #       with:
