@@ -21,10 +21,9 @@ jobs:
     #  To automatically get bug fixes and new Php versions for shivammathur/setup-php,
     # change this to (see https://github.com/shivammathur/setup-php#bookmark-versioning):
     - uses: shivammathur/setup-php@v2
-    # - uses: shivammathur/setup-php@2cb9b829437ee246e9b3cac53555a39208ca6d28
       with:
         php-version: "8.0"
-    - uses: actions/checkout@v3
+#     - uses: actions/checkout@v3
 #     - name: Copy .env.test.local
 #       run: php -r "file_exists('.env.test.local') || copy('.env.test', '.env.test.local');"
 #     - name: Cache Composer packages
@@ -35,18 +34,23 @@ jobs:
 #         key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
 #         restore-keys: |
 #           ${{ runner.os }}-php-
+    - name: Symfony check
+      run: symfony check:requirements
+      
     - name: Composer update
-      run: composer update
-    - name: Install dependencies
-      uses: php-actions/composer@v6
-      with:
-        php_version: "8.0"
+      run: composer update --lock
+      
+    - name: Composer install dependencies
+      run: composer install 
+#     - name: Install dependencies
+#       uses: php-actions/composer@v6
+#       with:
+#         php_version: "8.0"
 #         version: "2.x"
-    - name: Disable Symfony debug toolbar
-      run: composer remove symfony/debug
+#     - name: Disable Symfony debug toolbar
+#       run: composer remove symfony/debug
         # echo "debug:\n  enabled: false" >> config/packages/dev/debug.yaml
-    # - name: Symfony check
-    #   run: symfony check:requirements
+
 #     - name: Clear cache Composer
 #       run: composer clear-cache
 #     - name: Create Database
