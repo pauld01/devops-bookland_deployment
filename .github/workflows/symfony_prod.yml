@@ -37,8 +37,11 @@ jobs:
     - name: Symfony check
       run: symfony check:requirements
       
-    - name: Composer update
+    - name: Composer update lock
       run: composer update --lock
+
+    - name: Composer update dependencies
+      run: composer update
       
     - name: Composer install dependencies
       run: composer install 
