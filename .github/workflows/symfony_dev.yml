@@ -51,7 +51,7 @@ jobs:
 
       - name: Build vendor folder
         run: composer install
-        working-directory: ./
+        working-directory: /home/runner/work/devops-bookland_deployment/
 
       - name: PHPUnit tests
         uses: php-actions/phpunit@v3
