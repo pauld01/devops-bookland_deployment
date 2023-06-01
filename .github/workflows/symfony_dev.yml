@@ -46,7 +46,7 @@ jobs:
           key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
 
       - name: List files
-        run: tree
+        run: ls
         working-directory: /home/
 
       - name: Build vendor folder
