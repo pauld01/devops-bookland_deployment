@@ -45,6 +45,9 @@ jobs:
           path: /vendor
           key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
 
+      - name: List files
+        run: ls
+
       - name: Build vendor folder
         run: composer install
         working-directory: ./
