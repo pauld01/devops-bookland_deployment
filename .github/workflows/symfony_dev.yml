@@ -35,6 +35,10 @@ jobs:
   unitary-tests:
     runs-on: ubuntu-latest
     steps:
+      - name: Install Symfony CLI
+        run: |
+          wget https://get.symfony.com/cli/installer -O - | bash
+          export PATH="$HOME/.symfony/bin:$PATH"
       - name: Retrieve cached vendor folder
         uses: actions/cache@v3
         with:
