@@ -47,7 +47,7 @@ jobs:
 
       - name: List files
         run: ls
-        working-directory: /home/
+        working-directory: /home/runner
 
       - name: Build vendor folder
         run: composer install
