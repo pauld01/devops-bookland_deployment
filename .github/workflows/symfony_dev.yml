@@ -21,15 +21,21 @@ jobs:
     - uses: shivammathur/setup-php@v2
       with:
         php-version: '8'
+        
+    - name: Install Symfony CLI
+      run: |
+        wget https://get.symfony.com/cli/installer -O - | bash
+        export PATH="$HOME/.symfony/bin:$PATH"
+
     - name: Cache vendor folder
       uses: actions/cache@v3
       with:
         path: /vendor
         key: ${{ github.sha }}
 
-    - name: Check symfony requirements
+    - name: Check Symfony requirements
       run: symfony check:requirements
-
+      
     - name: Build vendor folder
       run: composer install
       # working-directory: /home/runner/work/devops-bookland_deployment/
