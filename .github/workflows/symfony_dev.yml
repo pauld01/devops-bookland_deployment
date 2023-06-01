@@ -46,7 +46,7 @@ jobs:
           key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
 
       - name: List files
-        run: ls ${{ github.workspace }}
+        run: ls $GITHUB_WORKSPACE
 
       - name: Build vendor folder
         run: composer install
