@@ -47,6 +47,7 @@ jobs:
 
       - name: List files
         run: tree
+        working-directory: ./
 
       - name: Build vendor folder
         run: composer install
