@@ -47,6 +47,7 @@ jobs:
 
       - name: Build vendor folder
         run: composer install
+        working-directory: ./
 
       - name: PHPUnit tests
         uses: php-actions/phpunit@v3
