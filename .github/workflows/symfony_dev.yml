@@ -20,7 +20,7 @@ jobs:
     steps:
     - uses: shivammathur/setup-php@v2
       with:
-        php-version: '8'
+        php-version: '^8.0'
 
     - name: Install Symfony CLI
       run: |
@@ -28,18 +28,12 @@ jobs:
         export PATH="$HOME/.symfony/bin:$PATH"
 
     - name: Check Symfony requirements
-      # run: symfony check:requirements
       run: composer require --dev symfony/requirements-checker && vendor/bin/requirements-checker
       
 
   unitary-tests:
     runs-on: ubuntu-latest
     steps:
-      - name: Install Symfony CLI
-        run: |
-          wget https://get.symfony.com/cli/installer -O - | bash
-          export PATH="$HOME/.symfony/bin:$PATH"
-
       - name: Retrieve cached vendor folder
         uses: actions/cache@v3
         with:
