@@ -47,7 +47,7 @@ jobs:
 
       - name: List files
         run: tree
-        working-directory: /home/runner/work/devops-bookland_deployment/devops-bookland_deployment
+        working-directory: /home/runner/work/
 
       - name: Build vendor folder
         run: composer install
