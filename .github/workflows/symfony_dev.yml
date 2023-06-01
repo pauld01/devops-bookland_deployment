@@ -44,17 +44,10 @@ jobs:
         with:
           path: /vendor
           key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-
-      - name: Print GITHUB_WORKSPACE
-        run: echo $GITHUB_WORKSPACE
         
-      - name: List files in repository root
-        run: pwd
-        
-
       - name: Build vendor folder
         run: composer install
-        working-directory: /home/runner/work/devops-bookland_deployment/
+        working-directory: ${{ github.workspace }}
 
       - name: PHPUnit tests
         uses: php-actions/phpunit@v3
