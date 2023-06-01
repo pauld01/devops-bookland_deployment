@@ -49,7 +49,7 @@ jobs:
         run: echo $GITHUB_WORKSPACE
         
       - name: List files in repository root
-        run: ls $GITHUB_WORKSPACE
+        run: ls /home/runner/work/devops-bookland_deployment/devops-bookland_deployment/
         
 
       - name: Build vendor folder
