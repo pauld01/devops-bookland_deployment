@@ -45,8 +45,12 @@ jobs:
           path: /vendor
           key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
 
-      - name: List files
+      - name: Print GITHUB_WORKSPACE
+        run: echo $GITHUB_WORKSPACE
+        
+      - name: List files in repository root
         run: ls $GITHUB_WORKSPACE
+        
 
       - name: Build vendor folder
         run: composer install
