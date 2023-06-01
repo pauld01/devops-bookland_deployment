@@ -27,19 +27,10 @@ jobs:
         wget https://get.symfony.com/cli/installer -O - | bash
         export PATH="$HOME/.symfony/bin:$PATH"
 
-    - name: Cache vendor folder
-      uses: actions/cache@v3
-      with:
-        path: /vendor
-        key: ${{ github.sha }}
-
     - name: Check Symfony requirements
       # run: symfony check:requirements
       run: composer require --dev symfony/requirements-checker && vendor/bin/requirements-checker
       
-    - name: Build vendor folder
-      run: composer install
-      # working-directory: /home/runner/work/devops-bookland_deployment/
 
   unitary-tests:
     runs-on: ubuntu-latest
@@ -48,7 +39,10 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /vendor
-          key: ${{ github.sha }}
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+
+      - name: Build vendor folder
+        run: composer install
 
       - name: PHPUnit tests
         uses: php-actions/phpunit@v3
