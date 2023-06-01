@@ -51,13 +51,13 @@ jobs:
         with:
           fetch-depth: 0
         
-        
       - name: Build vendor folder
         run: composer install
         working-directory: ${{ github.workspace }}
 
       - name: PHPUnit tests
-        uses: php-actions/phpunit@v3
+        run: vendor/bin/phpunit --migrate-configuration
+       
 
   database:
     runs-on: ubuntu-latest
