@@ -39,10 +39,11 @@ jobs:
         run: |
           wget https://get.symfony.com/cli/installer -O - | bash
           export PATH="$HOME/.symfony/bin:$PATH"
+
       - name: Retrieve cached vendor folder
         uses: actions/cache@v3
         with:
-          path: /vendor
+          path: vendor
           key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
         
       - name: Build vendor folder
