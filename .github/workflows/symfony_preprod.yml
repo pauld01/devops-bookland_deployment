@@ -33,11 +33,6 @@ jobs:
   remove-debug-toolbar:
     runs-on: ubuntu-latest
     steps:
-    - name: Install Symfony CLI
-      run: |
-        wget https://get.symfony.com/cli/installer -O - | bash
-        export PATH="$HOME/.symfony/bin:$PATH"
-
     - name: Retrieve cached vendor folder
       uses: actions/cache@v3
       with:
@@ -53,9 +48,9 @@ jobs:
       run: | 
         export APP_ENV=prod
 
-    - name: Composer update
-      run: composer update 
-      working-directory: ${{ github.workspace }}
+    # - name: Composer update
+    #   run: composer update 
+    #   working-directory: ${{ github.workspace }}
     
     - name: Build vendor folder
       run: composer install
