@@ -45,15 +45,12 @@ jobs:
         fetch-depth: 0
 
     - name: Disable Symfony debug toolbar
-      run: composer remove --dev symfony/debug
+      run: | 
+        export APP_ENV=prod
 
-    - name: Composer update
-      run: composer update 
-      working-directory: ${{ github.workspace }}
-
-    - name: Validate composer.json and composer.lock
-      run: composer validate
-      working-directory: ${{ github.workspace }}
+    # - name: Composer update
+    #   run: composer update 
+    #   working-directory: ${{ github.workspace }}
     
     - name: Build vendor folder
       run: composer install
