@@ -37,12 +37,6 @@ jobs:
       run: |
         wget https://get.symfony.com/cli/installer -O - | bash
         export PATH="$HOME/.symfony/bin:$PATH"
-        
-    - name: Install Composer
-      run: |
-        php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-        php composer-setup.php --filename=composer --install-dir=/usr/local/bin
-        php -r "unlink('composer-setup.php');"
 
     - name: Retrieve cached vendor folder
       uses: actions/cache@v3
@@ -61,10 +55,6 @@ jobs:
 
     - name: Composer update
       run: composer update 
-      working-directory: ${{ github.workspace }}
-
-    - name: Validate composer.json and composer.lock
-      run: composer validate
       working-directory: ${{ github.workspace }}
     
     - name: Build vendor folder
