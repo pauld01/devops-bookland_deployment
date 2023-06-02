@@ -3,7 +3,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Symfony
+name: Symfony DEV
 
 on:
   push:
@@ -21,18 +21,15 @@ jobs:
     - uses: shivammathur/setup-php@v2
       with:
         php-version: '8'
-    - name: Cache vendor folder
-      uses: actions/cache@v3
-      with:
-        path: /vendor
-        key: ${{ github.sha }}
 
-    - name: Check symfony requirements
-      run: symfony check:requirements
+    - name: Install Symfony CLI
+      run: |
+        wget https://get.symfony.com/cli/installer -O - | bash
+        export PATH="$HOME/.symfony/bin:$PATH"
 
-    - name: Build vendor folder
-      run: composer install
-      # working-directory: /home/runner/work/devops-bookland_deployment/
+    - name: Check Symfony requirements
+      run: composer require --dev symfony/requirements-checker && vendor/bin/requirements-checker
+      
 
   unitary-tests:
     runs-on: ubuntu-latest
@@ -40,13 +37,23 @@ jobs:
       - name: Retrieve cached vendor folder
         uses: actions/cache@v3
         with:
-          path: /vendor
-          key: ${{ github.sha }}
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+        
+      - name: Build vendor folder
+        run: composer install
+        working-directory: ${{ github.workspace }}
 
       - name: PHPUnit tests
-        uses: php-actions/phpunit@v3
+        run: vendor/bin/phpunit
+       
 
-  changing-app-env:
+  database:
     runs-on: ubuntu-latest
     
     steps:
