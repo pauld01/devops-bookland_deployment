@@ -7,9 +7,9 @@ name: Symfony PROD
 
 on:
   push:
-    branches: [ "prod" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "prod" ]
+    branches: [ "main" ]
 
 permissions:
   contents: read
@@ -61,3 +61,8 @@ jobs:
 
       - name: MySQL connection test
         run: mysql -u ${{ vars.DATABASE_USER }} -p${{ vars.DATABASE_PASSWORD }} -h ${{ vars.DATABASE_HOST }} -P ${{ vars.DATABASE_PORT }} ${{ vars.DATABASE_NAME }} -e "SELECT 1 + 1"
+
+      - name: Update .env file
+        run: |
+          sed -i 's/^DATABASE_URL=.*/DATABASE_URL=${{ vars.DATABASE_URL }}/' .env
+          sed -i 's/^APP_ENV=.*/APP_ENV=prod/' .env
