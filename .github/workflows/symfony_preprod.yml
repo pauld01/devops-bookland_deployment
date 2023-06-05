@@ -47,10 +47,6 @@ jobs:
     - name: Disable Symfony debug toolbar
       run: | 
         export APP_ENV=prod
-
-    # - name: Composer update
-    #   run: composer update 
-    #   working-directory: ${{ github.workspace }}
     
     - name: Build vendor folder
       run: composer install
@@ -58,3 +54,12 @@ jobs:
 
     - name: PHPUnit tests
       run: vendor/bin/phpunit
+
+  database:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Copy .env.test.local
+        run: php -r "file_exists('.env.test.local') || copy('.env.test', '.env.test.local');"
+
+      - name: MySQL connection test
+        run: mysql -u ${{ vars.DATABASE_USER }} -p${{ vars.DATABASE_PASSWORD }} -h ${{ vars.DATABASE_HOST }} -P ${{ vars.DATABASE_PORT }} ${{ vars.DATABASE_NAME }} -e "SELECT 1 + 1"
