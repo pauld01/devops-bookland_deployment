@@ -64,6 +64,6 @@ jobs:
 
       - name: Update .env file
         run: |
-          sed -i 's~/^DATABASE_URL=.*/DATABASE_URL=${{ vars.DATABASE_URL }}~' .env
+          sed -i 's~^DATABASE_URL=.*/DATABASE_URL=${{ vars.DATABASE_URL }}~' .env
           sed -i '/^APP_ENV=.*/APP_ENV=prod/' .env
         working-directory: ${{ github.workspace }}
